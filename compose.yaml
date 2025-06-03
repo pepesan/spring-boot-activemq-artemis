@@ -1,0 +1,14 @@
+services:
+  artemis:
+    image: apache/activemq-artemis:latest-alpine
+    container_name: artemis-broker
+    ports:
+      - "61616:61616"   # Puerto de mensajería (JMS)
+      - "8161:8161"     # Puerto de la consola web
+      - "9876:9876"     # Puerto artemis?
+    environment:
+      - ARTEMIS_USER=admin       # Usuario administrador (por defecto: artemis)
+      - ARTEMIS_PASSWORD=password # Contraseña administrador (por defecto: artemis)
+      - ANONYMOUS_LOGIN=false        # Desactivar logins anónimos (por defecto: false)
+    volumes:
+      - ./data:/var/lib/artemis-instance
